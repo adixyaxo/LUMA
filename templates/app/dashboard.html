@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-paper text-obsidian antialiased m-0 p-0">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMA - Dashboard</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}">
+</head>
+
+<body class="h-full bg-paper text-obsidian font-roobert m-0 p-0 overflow-hidden flex">
+  
+  <!-- Left Column: Chats -->
+  <aside class="w-[280px] h-full flex flex-col border-r border-obsidian shrink-0 bg-paper">
+      <div class="h-[66px] flex items-center px-6 border-b border-obsidian">
+          <a href="/" class="text-body-sm font-normal tracking-wide hover:opacity-70 transition-opacity">LUMA</a>
+      </div>
+      <div class="flex-1 overflow-y-auto p-4">
+          <div class="mb-6">
+              <input type="text" placeholder="Search..." class="w-full bg-transparent border-b border-obsidian/30 py-2 text-caption focus:outline-none focus:border-obsidian transition-colors rounded-none">
+          </div>
+          
+          <div class="flex flex-col gap-2">
+              <h3 class="text-[10px] text-felt-gray uppercase tracking-wide mb-2">Recent</h3>
+              
+              <button class="w-full flex flex-col text-left p-3 hover:bg-obsidian/5 transition-colors border-l-2 border-obsidian">
+                  <span class="text-body-sm font-normal">Team Alpha</span>
+                  <span class="text-caption text-felt-gray truncate mt-1">Let's deploy tomorrow.</span>
+              </button>
+              
+              <button class="w-full flex flex-col text-left p-3 hover:bg-obsidian/5 transition-colors border-l-2 border-transparent">
+                  <span class="text-body-sm font-normal">Design Review</span>
+                  <span class="text-caption text-felt-gray truncate mt-1">The new gradients look sick.</span>
+              </button>
+          </div>
+      </div>
+  </aside>
+
+  <!-- Center Column: Conversation -->
+  <main class="flex-1 h-full flex flex-col bg-paper">
+      <div class="h-[66px] flex items-center justify-between px-8 border-b border-obsidian">
+          <h2 class="text-body font-normal">Team Alpha</h2>
+          <button class="text-caption text-felt-gray hover:text-obsidian transition-colors">Options</button>
+      </div>
+      
+      <div class="flex-1 overflow-y-auto p-8 flex flex-col justify-end gap-6">
+          <div class="flex flex-col items-start max-w-[70%]">
+              <span class="text-[10px] text-felt-gray mb-1">JANE DOE · 10:24 AM</span>
+              <div class="bg-obsidian/5 px-4 py-3 rounded-none border border-obsidian/10">
+                  <p class="text-body-sm leading-body-sm">Are we good to go for the Friday release?</p>
+              </div>
+          </div>
+          
+          <div class="flex flex-col items-end max-w-[70%] self-end">
+              <span class="text-[10px] text-felt-gray mb-1">YOU · 10:26 AM</span>
+              <div class="bg-obsidian text-paper px-4 py-3 rounded-none">
+                  <p class="text-body-sm leading-body-sm">Yes, CI is green. Proceeding with deployment.</p>
+              </div>
+          </div>
+      </div>
+      
+      <div class="p-6 border-t border-obsidian">
+          <form class="flex gap-4">
+              <input type="text" placeholder="Message Team Alpha..." class="flex-1 bg-transparent border-b border-obsidian/30 py-3 text-body-sm focus:outline-none focus:border-obsidian transition-colors rounded-none">
+              <button type="submit" class="text-caption uppercase tracking-wide hover:opacity-70 transition-opacity">Send</button>
+          </form>
+      </div>
+  </main>
+
+  <!-- Right Column: Context -->
+  <aside class="w-[320px] h-full flex flex-col border-l border-obsidian shrink-0 bg-paper hidden lg:flex">
+      <div class="h-[66px] flex items-center px-6 border-b border-obsidian">
+          <span class="text-caption uppercase tracking-wide">Context</span>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-8">
+          <div>
+              <h3 class="text-body-sm font-normal mb-1">Team Alpha</h3>
+              <p class="text-caption text-felt-gray">Engineering Sync</p>
+          </div>
+          
+          <div>
+              <h4 class="text-[10px] text-felt-gray uppercase tracking-wide mb-3">Members</h4>
+              <div class="flex flex-col gap-3 text-body-sm">
+                  <span>Jane Doe</span>
+                  <span>John Smith</span>
+                  <span>Alice Johnson</span>
+              </div>
+          </div>
+          
+          <div>
+              <h4 class="text-[10px] text-felt-gray uppercase tracking-wide mb-3">Shared Media</h4>
+              <div class="grid grid-cols-2 gap-2">
+                  <div class="aspect-square bg-obsidian/10"></div>
+                  <div class="aspect-square bg-obsidian/10"></div>
+              </div>
+          </div>
+      </div>
+  </aside>
+
+</body>
+</html>

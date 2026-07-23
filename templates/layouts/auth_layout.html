@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#0d0d0d] text-[#f7f7f7] antialiased m-0 p-0">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}LUMA{% endblock %}</title>
+
+  <!-- Typography System: Inter (Sans), Instrument Serif (Serif), Fragment Mono (Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}">
+  <style>
+    :root {
+      --color-bg: #0d0d0d;
+      --color-text: #f7f7f7;
+      --color-indigo: #5f61ed;
+      --color-blue: #006fff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .font-serif-italic {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+    }
+
+    .font-mono-tech {
+      font-family: 'Fragment Mono', monospace;
+    }
+
+    /* Grainy noise overlay */
+    .grainy-overlay {
+      background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.6%22/%3E%3C/svg%3E');
+      mix-blend-mode: overlay;
+    }
+
+    /* Keyframe for the subtle left-panel gradient aura animation */
+    @keyframes aura-drift {
+      0%, 100% { transform: translateY(0px) scale(1); opacity: 0.18; }
+      50% { transform: translateY(-20px) scale(1.04); opacity: 0.28; }
+    }
+    .aura-drift { animation: aura-drift 8s ease-in-out infinite; }
+    .aura-drift-slow { animation: aura-drift 12s ease-in-out infinite reverse; }
+
+    /* Underline link */
+    .form-link {
+      position: relative;
+      transition: color 0.3s;
+    }
+    .form-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .form-link:hover::after { width: 100%; }
+
+    /* Input focus animation */
+    .auth-input {
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      transition: border-color 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .auth-input:focus { border-color: rgba(255,255,255,0.8); outline: none; }
+
+    /* Primary auth button */
+    .auth-btn {
+      transition: background 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.3s, color 0.8s, border-color 0.8s;
+    }
+    .auth-btn:hover { transform: translateY(-1px); }
+    .auth-btn:active { transform: translateY(0px); }
+
+    /* Glass form wrapper */
+    .glass-form {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 
+                  inset 0 4px 12px rgba(255, 255, 255, 0.03), 
+                  inset 0 -20px 20px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body class="h-screen bg-[#0d0d0d] text-[#f7f7f7] m-0 p-0 overflow-hidden flex flex-row relative">
+
+  <!-- Left Side: Gradient Grainy Div -->
+  <div class="hidden lg:flex w-1/2 h-full relative overflow-hidden flex-col justify-between p-12 bg-[#0a0a0a]">
+    
+    <!-- Grainy Noise Overlay -->
+    <div class="absolute inset-0 z-10 grainy-overlay"></div>
+
+    <!-- Atmospheric Glows (Indigo & Blue) -->
+    <div class="aura-drift absolute -top-20 -left-20 w-[800px] h-[800px] rounded-full mix-blend-screen opacity-20"
+      style="background: radial-gradient(circle, #5f61ed 0%, transparent 70%);"></div>
+    <div class="aura-drift-slow absolute -bottom-20 -right-20 w-[600px] h-[600px] rounded-full mix-blend-screen opacity-20"
+      style="background: radial-gradient(circle, #006fff 0%, transparent 70%);"></div>
+
+    <!-- Content (Blended) -->
+    <div class="relative z-20 mix-blend-overlay pointer-events-none text-white">
+      <a href="/" class="text-sm font-bold tracking-widest text-white uppercase">LUMA</a>
+    </div>
+
+    <div class="relative z-20 pointer-events-none mt-auto flex flex-col items-start gap-4">
+      <h1 class="text-[7vw] font-light tracking-tighter leading-none text-white select-none">
+        <span class="font-serif-italic">Focus</span>
+      </h1>
+      <p class="text-xl font-light text-white/90 font-mono-tech uppercase tracking-widest">Speed // Simplicity</p>
+    </div>
+  </div>
+
+  <!-- Right Side: Form Content -->
+  <div class="w-full lg:w-1/2 h-full flex flex-col relative z-20 bg-[#0d0d0d] overflow-y-auto border-l border-white/5 shadow-2xl">
+    
+    <!-- Top Navigation Bar -->
+    <header class="w-full h-[80px] px-8 md:px-12 flex justify-between lg:justify-end items-center flex-shrink-0">
+      <a href="/" class="lg:hidden text-sm font-bold tracking-widest text-white">LUMA</a>
+      <nav class="flex gap-8 text-xs font-medium tracking-widest uppercase text-white/60">
+        <a href="/" class="hover:text-white transition-colors duration-300">Home</a>
+        <a href="/about" class="hover:text-white transition-colors duration-300">About</a>
+        <a href="https://github.com" target="_blank" class="hover:text-white transition-colors duration-300">GitHub</a>
+      </nav>
+    </header>
+
+    <!-- Main Form Area -->
+    <main class="flex-1 flex items-center justify-center px-6 py-12 md:py-16">
+      <div class="w-full max-w-[420px] glass-form p-10 md:p-12">
+        <!-- Form Header -->
+        <div class="mb-10">
+          {% block auth_header %}{% endblock %}
+        </div>
+
+        <!-- Form Body -->
+        {% block auth_form %}{% endblock %}
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="h-[52px] flex items-center justify-between px-8 md:px-12 flex-shrink-0">
+      <span class="text-[10px] text-white/30 tracking-widest uppercase font-mono-tech">LUMA Digital</span>
+      <span class="text-[10px] text-white/30 tracking-widest uppercase font-mono-tech">© 2026</span>
+    </footer>
+
+  </div>
+
+  <script>
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      const btn = document.querySelector(`[data-toggle="${inputId}"]`);
+      if (input.type === 'password') {
+        input.type = 'text';
+        if (btn) btn.textContent = 'HIDE';
+      } else {
+        input.type = 'password';
+        if (btn) btn.textContent = 'SHOW';
+      }
+    }
+  </script>
+</body>
+</html>
