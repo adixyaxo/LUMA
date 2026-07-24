@@ -1,0 +1,7 @@
+fastapi[standard]
+pymongo
+pydantic
+pyjwt
+bcrypt
+python-dotenv
+motor

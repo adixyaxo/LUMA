@@ -1,6 +1,7 @@
 from src.config.templates import templates
 from fastapi import APIRouter
 from fastapi.requests import Request
+from src.auth.services import handleSignup, handleSignin
 router = APIRouter()
 
 
@@ -12,6 +13,12 @@ async def signup(request:Request):
     context={}
   )
 
+@router.post("/register")
+async def register(request:Request):
+  return handleSignup(request)
+
+
+
 @router.get("/login")
 async def login(request:Request):
   return templates.TemplateResponse(
@@ -19,3 +26,7 @@ async def login(request:Request):
     name="auth/login.html",
     context={}
   )
+
+@router.post("/authenticate")
+async def register(request:Request):
+  return handleSignin(request)

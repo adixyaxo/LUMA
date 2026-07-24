@@ -257,26 +257,8 @@
   .top-1\/2 {
     top: calc(1 / 2 * 100%);
   }
-  .top-2 {
-    top: calc(var(--spacing) * 2);
-  }
-  .top-5 {
-    top: calc(var(--spacing) * 5);
-  }
-  .top-10 {
-    top: calc(var(--spacing) * 10);
-  }
-  .top-20 {
-    top: calc(var(--spacing) * 20);
-  }
-  .top-100 {
-    top: calc(var(--spacing) * 100);
-  }
   .top-\[-10\%\] {
     top: -10%;
-  }
-  .top-\[1vh\] {
-    top: 1vh;
   }
   .-right-32 {
     right: calc(var(--spacing) * -32);
@@ -491,17 +473,11 @@
   .max-h-200 {
     max-height: calc(var(--spacing) * 200);
   }
-  .max-h-\[800px\] {
-    max-height: 800px;
-  }
   .min-h-90 {
     min-height: calc(var(--spacing) * 90);
   }
   .min-h-\[160px\] {
     min-height: 160px;
-  }
-  .min-h-\[360px\] {
-    min-height: 360px;
   }
   .min-h-screen {
     min-height: 100vh;
@@ -538,9 +514,6 @@
   }
   .w-\[80vw\] {
     width: 80vw;
-  }
-  .w-\[100vw\] {
-    width: 100vw;
   }
   .w-\[280px\] {
     width: 280px;
@@ -580,9 +553,6 @@
   }
   .max-w-\[70\%\] {
     max-width: 70%;
-  }
-  .max-w-\[440px\] {
-    max-width: 440px;
   }
   .max-w-\[600px\] {
     max-width: 600px;
@@ -878,10 +848,6 @@
     --tw-gradient-position: to bottom right in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
-  .bg-gradient-to-t {
-    --tw-gradient-position: to top in oklab;
-    background-image: linear-gradient(var(--tw-gradient-stops));
-  }
   .bg-gradient-to-tr {
     --tw-gradient-position: to top right in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
@@ -988,9 +954,6 @@
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
-  }
-  .py-2\.5 {
-    padding-block: calc(var(--spacing) * 2.5);
   }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
