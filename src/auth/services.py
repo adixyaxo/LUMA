@@ -1,18 +1,31 @@
 from fastapi.responses import JSONResponse
 from fastapi.requests import Request
 from src.schemas.schemas import userSignup,userSignin
-
+from src.config.database import users
 
 async def handleSignup(request:Request,info:userSignup):
-  print(info)
-  return JSONResponse({
-    "message":"User created successfully"
+  if users.find_one({"email":info.email}):
+    return JSONResponse({
+      "message":"User already exists"
+    })
+  else:
+    return JSONResponse({
+      "message":"User signed in successfully"
   })
 
 
-
 async def handleSignin(request:Request,info:userSignin):
-  print(info)
-  return JSONResponse({
-    "message":"User signed in successfully"
+  if (user := await users.find_one({"email":info.email})):
+    if user.get("password") == info.password:
+
+      return JSONResponse({
+        "message":"User signed in successfully"
+    })
+    else:
+      return JSONResponse({
+        "message":"Invalid credentials"
+    })
+  else:
+    return JSONResponse({
+      "message":"User not found"
   })
