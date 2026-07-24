@@ -3,6 +3,10 @@
 
 @theme {
   /* ── COLORS ─────────────────────────────────────────────────────── */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  
   --color-obsidian: #000000;
   --color-paper: #ffffff;
   --color-inkstone: #181818;
@@ -43,8 +47,6 @@
   --text-heading-lg--line-height: 0.76;
 
   /* ── BORDER RADIUS ───────────────────────────────────────────────── */
-  --radius-sharp: 0px;
-  --radius-full: 75px;
 
   /* ── SPACING ─────────────────────────────────────────────────────── */
   --spacing-section: 46px;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="m-0 p-0 w-full bg-[#0d0d0d] text-[#f7f7f7]">
+<html lang="en" class="m-0 p-0 w-full bg-black text-[#f7f7f7]">
 
 <head>
   <meta charset="UTF-8">
@@ -11,8 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}">
+  
+  <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+  <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}?v=2">
   <style>
     :root {
       --color-bg: #0d0d0d;
@@ -23,6 +24,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
+      background-color: transparent !important;
     }
 
     .font-serif-italic {
@@ -45,14 +47,27 @@
     }
     .animate-spin-slow { animation: spin-slow 18s linear infinite; }
 
+    /* Aura / floating animations */
     @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
-      50% { transform: translateY(-20px) scale(1.05); opacity: 0.8; }
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+      50% { transform: translateY(-30px) scale(1.05); opacity: 0.6; }
     }
     .aura-float { animation: float 10s ease-in-out infinite; }
 
-    /* Button styles */
-    .btn-ghost {
+    /* Animated Gradient Background */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient-bg {
+      background: linear-gradient(-45deg, #2b0000, #000000, #17002b, #000000);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    /* Primary Buttons */
+    .btn-ghost, .btn-filled {
       transition: background 0.8s cubic-bezier(0.19, 1, 0.22, 1),
                   color 0.8s cubic-bezier(0.19, 1, 0.22, 1),
                   border-color 0.8s cubic-bezier(0.19, 1, 0.22, 1);
@@ -75,7 +90,7 @@
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 30px;
+      border-radius: 20px;
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1),
                   inset 0 4px 12px rgba(255, 255, 255, 0.03),
                   inset 0 -20px 20px rgba(0, 0, 0, 0.2);
@@ -115,13 +130,13 @@
 
   <!-- ── FIXED NAVIGATION ────────────────────────────────────────────── -->
   <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-[80px] mix-blend-difference pointer-events-none">
-    <a href="/" class="text-white/90 text-sm font-bold tracking-widest pointer-events-auto">LUMA</a>
+    <a href="/" class="text-white/90 text-sm font-bold tracking-widest pointer-events-auto focus:outline-none focus:text-white" aria-label="LUMA Home">LUMA</a>
 
     <nav class="flex items-center gap-8 md:gap-12 text-xs font-medium tracking-widest uppercase text-white/80 pointer-events-auto">
-      <a href="/" class="nav-link py-1 hover:text-white transition-colors duration-300">Home</a>
-      <a href="/about" class="nav-link py-1 hover:text-white transition-colors duration-300">About</a>
-      <a href="https://github.com" target="_blank" class="nav-link py-1 hover:text-white transition-colors duration-300">GitHub</a>
-      <a href="/login" class="nav-link py-1 hover:text-white transition-colors duration-300">Log In</a>
+      <a href="/" class="nav-link py-1 hover:text-white transition-colors duration-300 focus:outline-none focus:text-white">Home</a>
+      <a href="/about" class="nav-link py-1 hover:text-white transition-colors duration-300 focus:outline-none focus:text-white">About</a>
+      <a href="https://github.com" target="_blank" class="nav-link py-1 hover:text-white transition-colors duration-300 focus:outline-none focus:text-white" aria-label="GitHub Repository">GitHub</a>
+      <a href="/login" class="nav-link py-1 hover:text-white transition-colors duration-300 focus:outline-none focus:text-white">Log In</a>
     </nav>
   </header>
 
@@ -133,7 +148,7 @@
     </video>
 
     <!-- Vignette -->
-    <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, transparent 20%, transparent 70%, #0d0d0d 100%);"></div>
+    <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to bottom, rgba(2,4,10,0.5) 0%, transparent 20%, transparent 70%, #02040a 100%);"></div>
 
     <!-- Blend Title Layer -->
     <div class="absolute inset-0 flex items-center justify-center px-6 md:px-10 pointer-events-none z-20" style="isolation: isolate; mix-blend-mode: difference;">
@@ -154,19 +169,19 @@
       </div>
 
       <!-- CTA Buttons -->
-      <div class="flex gap-4">
-        <a href="/login" class="btn-ghost inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/30 text-white/90 text-sm hover:bg-white hover:text-black hover:border-white font-medium">
+      <div class="flex gap-4 relative z-50">
+        <a href="/login" class="btn-ghost inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/30 text-white/90 text-sm font-normal hover:bg-white hover:text-black hover:border-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black">
           Log In
         </a>
-        <a href="/signup" class="btn-ghost inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-black text-sm hover:bg-transparent hover:text-white hover:border-white border border-transparent font-medium">
+        <a href="/signup" class="btn-filled inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-black text-sm font-normal border border-transparent hover:bg-transparent hover:text-white hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black">
           Sign Up
         </a>
       </div>
     </div>
 
     <!-- Rotating Scroll Badge -->
-    <div class="absolute bottom-12 w-full z-40 pointer-events-none hidden lg:block mix-blend-difference text-white">
-      <svg class="w-24 h-24 animate-spin-slow text-white" viewBox="0 0 100 100">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none hidden md:block text-white/80 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+      <svg class="w-24 h-24 animate-spin-slow" viewBox="0 0 100 100">
         <path id="badge-curve" fill="transparent" d="M 50 12 A 38 38 0 1 1 49.9 12" />
         <text class="text-[10px] font-bold tracking-[6px] uppercase" fill="currentColor">
           <textPath href="#badge-curve">SCROLL · LUMA · SCROLL · LUMA ·</textPath>
@@ -176,9 +191,9 @@
   </section>
 
   <!-- ── PHILOSOPHY SECTION ────────────────────────────────────────── -->
-  <section class="relative w-full py-32 px-6 md:px-12 overflow-hidden bg-[#0d0d0d]">
+  <section class="relative w-full py-32 px-6 md:px-12 overflow-hidden bg-black">
     <!-- Digital Aura Background -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full blur-[140px] opacity-30 bg-[#5f61ed] pointer-events-none mix-blend-screen aura-float"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full blur-[140px] opacity-5 bg-gradient-to-tr from-fuchsia-900 via-indigo-950 to-teal-900 pointer-events-none mix-blend-screen aura-float"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
       <div class="tech-pill mb-8">v2.0 Architecture</div>
@@ -197,7 +212,7 @@
       <!-- Card 1: Fast & Realtime -->
       <div class="glass-card md:col-span-8 p-10 md:p-12 flex flex-col justify-between min-h-[360px] relative overflow-hidden group">
         <!-- Inner glow -->
-        <div class="absolute -right-32 -top-32 w-96 h-96 bg-[#006fff] rounded-full blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+        <div class="absolute -right-32 -top-32 w-96 h-96 bg-[#006fff] rounded-full blur-[120px] opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
 
         <div class="relative z-10">
           <div class="flex flex-wrap gap-2 mb-8">
@@ -214,7 +229,7 @@
 
       <!-- Card 2: Security -->
       <div class="glass-card md:col-span-4 p-10 md:p-12 flex flex-col justify-between min-h-[360px] relative overflow-hidden group">
-        <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-[#5f61ed] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+        <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-[#5f61ed] rounded-full blur-[100px] opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
 
         <div class="relative z-10 h-full flex flex-col">
           <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-white/5 mb-8">
@@ -254,7 +269,7 @@
           <span class="font-mono-tech text-[10px] text-white/40 ml-4 uppercase">main.py</span>
         </div>
         <!-- Code content -->
-        <div class="p-8 h-full bg-[#0a0a0a] font-mono-tech text-xs text-white/70 leading-loose overflow-x-auto">
+        <div class="p-8 h-full bg-[#02040a] font-mono-tech text-xs text-white/70 leading-loose overflow-x-auto">
           <span class="text-[#5f61ed]">@app</span>.websocket(<span class="text-[#006fff]">"/ws/{client_id}"</span>)<br>
           <span class="text-[#5f61ed]">async def</span> websocket_endpoint(websocket: WebSocket, client_id: <span class="text-[#006fff]">int</span>):<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-[#5f61ed]">await</span> manager.connect(websocket)<br>
@@ -283,10 +298,10 @@
       <p class="text-white/40 mb-12 max-w-md font-light text-sm">Join the open-source collective and experience production-grade architecture in action.</p>
 
       <div class="flex gap-4">
-        <a href="/signup" class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-white text-black text-sm hover:bg-[#5f61ed] hover:text-white transition-colors duration-500 font-medium">
+        <a href="/signup" class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-white text-black text-sm hover:bg-[#5f61ed] hover:text-white transition-colors duration-500 font-medium focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black">
           Get Started
         </a>
-        <a href="https://github.com" target="_blank" class="inline-flex items-center justify-center px-10 py-4 rounded-full border border-white/20 text-white text-sm hover:bg-white/5 transition-colors duration-500 font-medium">
+        <a href="https://github.com" target="_blank" class="inline-flex items-center justify-center px-10 py-4 rounded-full border border-white/20 text-white text-sm hover:bg-white/5 transition-colors duration-500 font-medium focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black">
           View on GitHub
         </a>
       </div>
@@ -294,23 +309,44 @@
   </section>
 
   <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
-  <footer class="relative z-10 w-full bg-[#0a0a0a] border-t border-white/10 text-white/40 py-12 px-6 md:px-12 flex flex-col md:flex-row gap-8 justify-between text-[10px] tracking-widest uppercase font-medium">
+  <footer class="relative z-10 w-full bg-black border-t border-white/10 text-white/40 py-12 px-6 md:px-12 flex flex-col md:flex-row gap-8 justify-between text-[10px] tracking-widest uppercase font-medium">
     <div class="flex flex-col gap-2">
       <span class="text-white/80 font-bold mb-2">LUMA</span>
-      <span>101 Server Rack</span>
-      <span>Data Center</span>
+      <span>Unified Messaging Protocol</span>
+      <span>Open Source</span>
     </div>
     <div class="flex flex-col gap-2">
       <span class="text-white/80 font-bold mb-2">Connect</span>
-      <a href="https://github.com/luma" class="hover:text-white transition-colors">github.com/luma</a>
-      <a href="mailto:support@luma.dev" class="hover:text-white transition-colors">support@luma.dev</a>
+      <a href="https://github.com/luma" target="_blank" class="hover:text-white transition-colors focus:outline-none focus:text-white" aria-label="GitHub Repository">github.com/luma</a>
+      <a href="mailto:support@luma.dev" class="hover:text-white transition-colors focus:outline-none focus:text-white" aria-label="Support Email">support@luma.dev</a>
     </div>
     <div class="flex flex-col gap-2 md:text-right">
       <span class="text-white/80 font-bold mb-2">Legal</span>
       <span>© 2026 LUMA</span>
-      <span>Open Source Software</span>
+      <span>MIT License</span>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+  <script>
+    // Initialize Shery.js Effects
+    Shery.makeMagnet(".btn-liquid, .nav-link, header a", {
+      ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+      duration: 1,
+    });
+
+    Shery.textAnimate("h1, .glass-card h2", {
+      style: 1,
+      y: 10,
+      delay: 0.1,
+      duration: 1.5,
+      ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+      multiplier: 0.1,
+    });
+  </script>
 </body>
 </html>

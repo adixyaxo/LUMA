@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="m-0 p-0 h-full w-full bg-[#0d0d0d] text-[#f7f7f7]">
+<html lang="en" class="m-0 p-0 h-full w-full bg-black text-[#f7f7f7]">
 
 <head>
   <meta charset="UTF-8">
@@ -10,11 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}">
+  
+  <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+  <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}?v=2">
   <style>
     :root {
-      --color-bg: #0d0d0d;
+      --color-bg: #000000;
       --color-text: #f7f7f7;
       --color-indigo: #5f61ed;
       --color-blue: #006fff;
@@ -47,13 +48,20 @@
     .animate-float { animation: float 10s ease-in-out infinite; }
     .animate-float-delayed { animation: float 12s ease-in-out infinite reverse; }
 
+    /* Primary Buttons */
+    .btn-ghost, .btn-filled {
+      transition: background 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                  color 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                  border-color 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
     /* Advanced Glassmorphism */
     .glass-card {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 30px;
+      border-radius: 20px;
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 
                   inset 0 4px 12px rgba(255, 255, 255, 0.03), 
                   inset 0 -20px 20px rgba(0, 0, 0, 0.2);
@@ -86,21 +94,21 @@
   <!-- Ambient Global Background -->
   <div class="fixed inset-0 pointer-events-none z-0">
      <!-- Base dark background -->
-     <div class="absolute inset-0 bg-[#0d0d0d]"></div>
+     <div class="absolute inset-0" style="background: linear-gradient(135deg, #050a30 0%, #000000 50%, #200530 100%);"></div>
      <div class="absolute inset-0 grainy-overlay opacity-30"></div>
      
      <!-- Vibrant Auras (Indigo & Blue) -->
-     <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] animate-float opacity-30 mix-blend-screen bg-[#5f61ed]"></div>
-     <div class="absolute bottom-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[140px] animate-float-delayed opacity-20 mix-blend-screen bg-[#006fff]"></div>
+     <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] animate-float opacity-5 mix-blend-screen bg-[#5f61ed]"></div>
+     <div class="absolute bottom-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[140px] animate-float-delayed opacity-5 mix-blend-screen bg-[#006fff]"></div>
   </div>
 
   <!-- Top Navigation Bar -->
-  <header class="fixed top-0 left-0 w-full h-[80px] px-8 md:px-12 flex justify-between items-center z-50 mix-blend-difference text-white">
-      <a href="/" class="text-sm font-bold tracking-widest">LUMA</a>
-      <nav class="flex gap-6 md:gap-10 text-xs font-medium tracking-widest text-white/80 uppercase">
-          <a href="/" class="hover:text-white transition-opacity">Home</a>
-          <a href="/about" class="text-white transition-opacity relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[1px] after:bg-white">About</a>
-          <a href="https://github.com" target="_blank" class="hover:text-white transition-opacity">GitHub</a>
+  <header class="fixed top-0 left-0 w-full h-[80px] px-8 md:px-12 flex justify-between items-center z-50 mix-blend-difference text-white pointer-events-none">
+      <a href="/" class="text-sm font-bold tracking-widest pointer-events-auto focus:outline-none focus:text-white" aria-label="LUMA Home">LUMA</a>
+      <nav class="flex gap-6 md:gap-10 text-xs font-medium tracking-widest text-white/80 uppercase pointer-events-auto">
+          <a href="/" class="hover:text-white transition-opacity focus:outline-none focus:text-white">Home</a>
+          <a href="/about" class="text-white transition-opacity relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[1px] after:bg-white focus:outline-none focus:text-white">About</a>
+          <a href="https://github.com" target="_blank" class="hover:text-white transition-opacity focus:outline-none focus:text-white" aria-label="GitHub Repository">GitHub</a>
       </nav>
   </header>
 
@@ -112,7 +120,7 @@
              System Architecture v2.0
           </div>
           <h1 class="text-6xl md:text-[94px] font-light tracking-tight leading-none mb-8">
-             Engineered for<br><span class="font-serif-italic text-white/80">Clarity.</span>
+             Engineered for <br><span class="font-serif-italic text-white/80">Clarity.</span>
           </h1>
           <p class="text-lg md:text-xl text-white/60 max-w-[600px] mx-auto font-light leading-relaxed">
               A modern, lightweight, real-time messaging platform. Designed around simplicity, extreme performance, and boundless extensibility.
@@ -124,7 +132,7 @@
           
           <!-- Large Card (Spans 2 cols) -->
           <div class="glass-card p-10 md:col-span-2 flex flex-col justify-between h-[340px] relative overflow-hidden group">
-              <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#006fff]/20 to-transparent blur-[60px] transform group-hover:scale-110 transition-transform duration-1000"></div>
+              <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#006fff]/10 to-transparent blur-[60px] transform group-hover:scale-110 transition-transform duration-1000"></div>
               
               <div class="flex gap-2 flex-wrap mb-6">
                  <span class="tech-pill">FastAPI</span>
@@ -142,7 +150,7 @@
 
           <!-- Vertical Card -->
           <div class="glass-card p-10 flex flex-col justify-between h-[340px] relative overflow-hidden group">
-              <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#5f61ed]/30 to-transparent blur-[50px] transform group-hover:scale-110 transition-transform duration-1000"></div>
+              <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#5f61ed]/15 to-transparent blur-[50px] transform group-hover:scale-110 transition-transform duration-1000"></div>
               
               <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-6 bg-white/5 backdrop-blur-md relative z-10">
                  <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
@@ -158,7 +166,7 @@
 
           <!-- Small Horizontal Card -->
           <div class="glass-card p-10 flex flex-col justify-between h-[340px] relative overflow-hidden group">
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-[#5f61ed]/20 to-transparent blur-[50px] transform group-hover:rotate-12 transition-transform duration-1000"></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-[#5f61ed]/10 to-transparent blur-[50px] transform group-hover:rotate-12 transition-transform duration-1000"></div>
               
               <div class="flex gap-2 flex-wrap mb-6 relative z-10">
                  <span class="tech-pill">Python</span>
@@ -184,7 +192,7 @@
                  </p>
               </div>
               
-              <div class="z-10 w-full md:w-1/2 h-full min-h-[160px] flex items-center justify-center border border-white/10 rounded-xl bg-[#0a0a0a]/80 backdrop-blur-md">
+              <div class="z-10 w-full md:w-1/2 h-full min-h-[160px] flex items-center justify-center border border-white/10 rounded-none bg-black/80 backdrop-blur-md">
                   <div class="flex items-center justify-center gap-4 text-white/40 text-sm tracking-widest uppercase font-mono-tech">
                       <span>Data</span>
                       <span class="w-8 h-[1px] bg-white/20"></span>
@@ -201,10 +209,10 @@
              <div class="absolute inset-0 bg-gradient-to-b from-[#5f61ed]/10 to-transparent"></div>
              <h3 class="relative z-10 text-4xl font-light mb-8">Ready to join the <span class="font-serif-italic">collective?</span></h3>
              <div class="relative z-10 flex flex-wrap justify-center gap-4">
-                 <a href="/login" class="inline-flex items-center justify-center bg-transparent border border-white/30 text-white rounded-full px-10 py-4 text-sm hover:bg-white hover:text-black transition-colors duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] font-medium">
+                 <a href="/login" class="btn-ghost inline-flex items-center justify-center border border-white/30 text-white/90 rounded-full px-10 py-4 text-sm font-normal hover:bg-white hover:text-black hover:border-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black">
                      Log In
                  </a>
-                 <a href="/signup" class="inline-flex items-center justify-center bg-white text-black border border-transparent rounded-full px-10 py-4 text-sm hover:bg-transparent hover:text-white hover:border-white transition-colors duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] font-medium">
+                 <a href="/signup" class="btn-filled inline-flex items-center justify-center bg-white text-black border border-transparent rounded-full px-10 py-4 text-sm font-normal hover:bg-transparent hover:text-white hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black">
                      Sign Up
                  </a>
              </div>
@@ -214,22 +222,43 @@
   </main>
 
   <!-- Footer -->
-  <footer class="relative z-20 w-full bg-[#0a0a0a]/80 backdrop-blur-xl border-t border-white/10 text-white/50 py-12 px-8 md:px-12 flex flex-col md:flex-row gap-8 justify-between text-[11px] tracking-widest uppercase font-medium">
+  <footer class="relative z-20 w-full bg-black/80 backdrop-blur-xl border-t border-white/10 text-white/50 py-12 px-8 md:px-12 flex flex-col md:flex-row gap-8 justify-between text-[11px] tracking-widest uppercase font-medium">
       <div>
-          <p class="text-white mb-4">LUMA HQ</p>
-          <p class="mb-2 hover:text-white transition-colors cursor-default">101 Server Rack</p>
-          <p class="hover:text-white transition-colors cursor-default">Data Center</p>
+          <p class="text-white mb-4">LUMA</p>
+          <p class="mb-2 cursor-default">Unified Messaging Protocol</p>
+          <p class="cursor-default">Open Source</p>
       </div>
       <div>
           <p class="text-white mb-4">Connect</p>
-          <p class="mb-2"><a href="https://github.com/luma" target="_blank" class="hover:text-white transition-colors">github.com/luma</a></p>
-          <p><a href="mailto:support@luma.dev" class="hover:text-white transition-colors">support@luma.dev</a></p>
+          <p class="mb-2"><a href="https://github.com/luma" target="_blank" class="hover:text-white transition-colors focus:outline-none focus:text-white">github.com/luma</a></p>
+          <p><a href="mailto:support@luma.dev" class="hover:text-white transition-colors focus:outline-none focus:text-white">support@luma.dev</a></p>
       </div>
       <div class="md:text-right">
           <p class="mb-2 text-white">© 2026 LUMA</p>
-          <p>All rights reserved.</p>
+          <p>MIT License</p>
       </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+  <script>
+    // Initialize Shery.js Effects
+    Shery.makeMagnet(".btn-ghost, .btn-filled, header a, footer a", {
+      ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+      duration: 1,
+    });
+
+    Shery.textAnimate("h1, h2, h3", {
+      style: 1,
+      y: 10,
+      delay: 0.1,
+      duration: 1.5,
+      ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+      multiplier: 0.1,
+    });
+  </script>
 </body>
 </html>
