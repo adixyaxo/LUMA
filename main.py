@@ -1,47 +1,12 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-app = FastAPI()
+from src.router.public import router as publicRouter
+from src.app.router import router as appRouter
+from src.authentication.router import router as authRouter
 
-templates = Jinja2Templates(directory="templates")
+app = FastAPI()
 app.mount("/static",StaticFiles(directory="static"),name="static")
 
-@app.get("/")
-async def home(request:Request):
-  return templates.TemplateResponse(
-    request=request,
-    name="pages/home.html",
-    context={}
-  )
-
-@app.get("/about")
-async def about(request:Request):
-  return templates.TemplateResponse(
-    request=request,
-    name="pages/about.html",
-    context={}
-  )
-
-@app.get("/signup")
-async def signup(request:Request):
-  return templates.TemplateResponse(
-    request=request,
-    name="auth/signup.html",
-    context={}
-  )
-
-@app.get("/login")
-async def login(request:Request):
-  return templates.TemplateResponse(
-    request=request,
-    name="auth/login.html",
-    context={}
-  )
-
-@app.get("/app")
-async def dashboard(request:Request):
-  return templates.TemplateResponse(
-    request=request,
-    name="app/dashboard.html",
-    context={}
-  )
+app.include_router(publicRouter)
+app.include_router(appRouter)
+app.include_router(authRouter)

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
   <link rel="stylesheet" href="{{ url_for('static', path='css/output.css') }}?v=2">
   <style>
@@ -120,6 +120,7 @@
     /* Text Gradient */
     .text-gradient {
       background: linear-gradient(to right, #fff, #9a9a9a);
+      background-clip: none;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -129,7 +130,7 @@
 <body class="m-0 p-0 w-full overflow-x-hidden antialiased selection:bg-white selection:text-black">
 
   <!-- ── FIXED NAVIGATION ────────────────────────────────────────────── -->
-  <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-[80px] mix-blend-difference pointer-events-none">
+  <header class="fixed top-0 my-2.5 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-20 mix-blend-difference pointer-events-none">
     <a href="/" class="text-white/90 text-sm font-bold tracking-widest pointer-events-auto focus:outline-none focus:text-white" aria-label="LUMA Home">LUMA</a>
 
     <nav class="flex items-center gap-8 md:gap-12 text-xs font-medium tracking-widest uppercase text-white/80 pointer-events-auto">
@@ -160,7 +161,7 @@
     <!-- Bottom Content in Hero -->
     <div class="relative z-30 w-full px-6 md:px-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pointer-events-auto">
       <!-- Description -->
-      <div class="max-w-[440px]">
+      <div class="max-w-110">
         <p class="text-white/70 text-sm md:text-base leading-relaxed font-light">
           A calm, fast, and focused messaging platform.<br>
           Built for developers, designers, and small teams<br>
@@ -193,7 +194,7 @@
   <!-- ── PHILOSOPHY SECTION ────────────────────────────────────────── -->
   <section class="relative w-full py-32 px-6 md:px-12 overflow-hidden bg-black">
     <!-- Digital Aura Background -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full blur-[140px] opacity-5 bg-gradient-to-tr from-fuchsia-900 via-indigo-950 to-teal-900 pointer-events-none mix-blend-screen aura-float"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-200 max-h-200 rounded-full blur-[140px] opacity-5 bg-linear-to-tr from-fuchsia-900 via-indigo-950 to-teal-900 pointer-events-none mix-blend-screen aura-float"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
       <div class="tech-pill mb-8">v2.0 Architecture</div>
@@ -210,7 +211,7 @@
     <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
 
       <!-- Card 1: Fast & Realtime -->
-      <div class="glass-card md:col-span-8 p-10 md:p-12 flex flex-col justify-between min-h-[360px] relative overflow-hidden group">
+      <div class="glass-card md:col-span-8 p-10 md:p-12 flex flex-col justify-between min-h-90 relative overflow-hidden group">
         <!-- Inner glow -->
         <div class="absolute -right-32 -top-32 w-96 h-96 bg-[#006fff] rounded-full blur-[120px] opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
 
@@ -228,7 +229,7 @@
       </div>
 
       <!-- Card 2: Security -->
-      <div class="glass-card md:col-span-4 p-10 md:p-12 flex flex-col justify-between min-h-[360px] relative overflow-hidden group">
+      <div class="glass-card md:col-span-4 p-10 md:p-12 flex flex-col justify-between min-h-90 relative overflow-hidden group">
         <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-[#5f61ed] rounded-full blur-[100px] opacity-10 group-hover:opacity-20 transition-opacity duration-700"></div>
 
         <div class="relative z-10 h-full flex flex-col">
@@ -245,8 +246,8 @@
       </div>
 
       <!-- Card 3: Backend First -->
-      <div class="glass-card md:col-span-5 p-10 md:p-12 flex flex-col justify-between min-h-[360px] relative overflow-hidden group">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#006fff]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      <div class="glass-card md:col-span-5 p-10 md:p-12 flex flex-col justify-between min-h-90 relative overflow-hidden group">
+        <div class="absolute inset-0 bg-linear-to-t from-[#006fff]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
         <div class="relative z-10 h-full flex flex-col">
           <div class="font-mono-tech text-[#006fff] text-xs mb-8 uppercase tracking-widest">Architecture</div>
@@ -288,8 +289,8 @@
 
   <!-- ── BOTTOM CTA ──────────────────────────────────────────────────── -->
   <section class="relative w-full py-40 px-6 flex flex-col items-center justify-center text-center overflow-hidden border-t border-white/5">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0d0d0d] to-[#0a0a0a]"></div>
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100vw] h-[400px] bg-[#5f61ed] rounded-[100%] blur-[150px] opacity-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-[#0d0d0d] to-[#0a0a0a]"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-100 bg-[#5f61ed] rounded-[100%] blur-[150px] opacity-10 pointer-events-none"></div>
 
     <div class="relative z-10 flex flex-col items-center">
       <h2 class="text-5xl md:text-7xl font-light tracking-tight mb-8 text-gradient">
