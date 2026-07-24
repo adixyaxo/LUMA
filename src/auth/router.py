@@ -1,7 +1,9 @@
+from typing import Annotated
 from src.config.templates import templates
-from fastapi import APIRouter
+from fastapi import APIRouter,Form
 from fastapi.requests import Request
 from src.auth.services import handleSignup, handleSignin
+from src.schemas.schemas import userSignup,userSignin
 router = APIRouter()
 
 
@@ -13,9 +15,9 @@ async def signup(request:Request):
     context={}
   )
 
-@router.post("/register")
-async def register(request:Request):
-  return handleSignup(request)
+@router.post("/signup")
+async def register(request:Request,info:Annotated[userSignup,Form()]):
+  return await handleSignup(request,info)
 
 
 
@@ -27,6 +29,6 @@ async def login(request:Request):
     context={}
   )
 
-@router.post("/authenticate")
-async def register(request:Request):
-  return handleSignin(request)
+@router.post("/login")
+async def register(request:Request,info:Annotated[userSignin,Form()]):
+  return await handleSignin(request,info)

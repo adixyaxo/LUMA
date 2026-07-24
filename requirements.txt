@@ -5,3 +5,4 @@ pyjwt
 bcrypt
 python-dotenv
 motor
+python-multipart
