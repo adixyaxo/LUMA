@@ -15,16 +15,27 @@ async def handleSignup(request:Request,info:userSignup):
 
 
 async def handleSignin(request:Request,info:userSignin):
-  if (user := await users.find_one({"email":info.email})):
-    if user.get("password") == info.password:
-      return JSONResponse({
-        "message":"User signed in successfully"
-    })
-    else:
-      return JSONResponse({
-        "message":"Invalid credentials"
-    })
+  # if (user := await users.find_one({"email":info.email})):
+  if ((info.email == "aditya0dagar@gmail.com") & (info.password == "password") ):
+    print("Login Sucess")
+    return JSONResponse(
+          {
+            "status":True,
+            "message":"User signed in successfully"
+          }
+    )
+    # if user.get("hashed_password") == info.password:
+    #   return JSONResponse({
+    #     "status":True,
+    #     "message":"User signed in successfully"
+    # })
+    # else:
+    #   return JSONResponse({
+    #     "status":False,
+    #     "message":"Invalid credentials"
+    # })
   else:
     return JSONResponse({
+      "status":"False",
       "message":"User not found"
   })
