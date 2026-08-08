@@ -1,4 +1,5 @@
 "use client"
+import { Link } from "react-router-dom";
 import { login } from "../api/login";
 import { cn } from "#lib/utils"
 import { Button } from "#components/ui/button"
@@ -51,12 +52,12 @@ export function LoginForm({
             </a>
             <h1 className="text-xl font-bold">Welcome to LUMA Inc.</h1>
             <FieldDescription>
-              Don&apos;t have an account? <a href="/signup">Sign up</a>
+              Don&apos;t have an account? <Link to="/signup">Sign up</Link>
             </FieldDescription>
           </div>
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input className="bg-black border border-white"
+            <Input className="bg-black"
               id="email"
               type="email"
               placeholder="m@example.com"

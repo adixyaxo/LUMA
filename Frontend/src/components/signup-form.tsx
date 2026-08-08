@@ -1,5 +1,5 @@
 "use client"
-
+import { Link } from "react-router-dom";
 import { cn } from "#lib/utils"
 import { Button } from "#components/ui/button"
 import {
@@ -11,7 +11,7 @@ import {
 } from "#components/ui/field"
 import { Input } from "#components/ui/input"
 import { GalleryVerticalEndIcon } from "lucide-react"
-import { useState} from "react";
+import { useState } from "react";
 
 export function SignupForm({
   className,
@@ -19,7 +19,8 @@ export function SignupForm({
 }: React.ComponentProps<"div">) {
 
   const [email, setEmail] = useState("")
-
+  const [password, setPassword] = useState("")
+  const [fullName, setFullName] = useState("")
   // const [showPassword, setShowPassword] = useState(false)
 
   return (
@@ -38,7 +39,7 @@ export function SignupForm({
             </a>
             <h1 className="text-xl font-bold">Welcome to Acme Inc.</h1>
             <FieldDescription>
-              Already have an account? <a href="/login">Sign in</a>
+              Already have an account? <Link to="/login">Log in</Link>
             </FieldDescription>
           </div>
           <Field>
@@ -51,6 +52,30 @@ export function SignupForm({
               className='bg-black border'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="password">Password</FieldLabel>
+            <Input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              required
+              className='bg-black border'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="fullName">Full Name</FieldLabel>
+            <Input
+              id="fullName"
+              type="text"
+              placeholder="John Doe"
+              required
+              className='bg-black border'
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
             />
           </Field>
           <Field>
